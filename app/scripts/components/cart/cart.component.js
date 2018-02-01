@@ -29,21 +29,17 @@ angular
 
        $scope.submit = function (index, idInDB) {
            var promise = $q(function (resolve, reject) {
-               resolve();
-           });
-
-           promise
-               .then(function () {
-                   var cartGood = $scope.goodsInCart.splice(index, 1)[0];
-
-                   return Cart.submitCart(cartGood)
-                       .$promise
-                       .then(function (data) {
-                           console.log('Ok: ', data);
-                       }, function (err) {
-                           console.log('Error: ', err);
-                       })
-               })
+               var cartGood = $scope.goodsInCart.splice(index, 1)[0];
+               return Cart.submitCart(cartGood)
+                   .$promise
+                   .then(function (data) {
+                       console.log('Ok: ', data);
+                       resolve();
+                   }, function (err) {
+                       console.log('Error: ', err);
+                       reject();
+                   })
+           })
                .then(function () {
                    return Cart.removeCartById(idInDB)
                        .$promise
@@ -64,21 +60,17 @@ angular
        $scope.remove = function (index, idInBD) {
 
            var promise = $q(function (resolve, reject) {
-               resolve();
-           });
-
-           promise
+               return Cart.removeCartById(idInBD)
+                   .$promise
+                   .then(function (data) {
+                       console.log('Ok: ', data);
+                       resolve();
+                   }, function (err) {
+                       console.log('Error: ', err);
+                       reject(err);
+                   })
+           })
                .then(function () {
-                   return Cart.removeCartById(idInBD)
-                       .$promise
-                       .then(function (data) {
-                           console.log('Ok: ', data);
-                       }, function (err) {
-                           console.log('Error: ', err);
-                       })
-               })
-               .then(function () {
-                   console.log('next');
                    $scope.goodsInCart.splice(index, 1);
                    $scope.updateSum();
                })

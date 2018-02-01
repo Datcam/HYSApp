@@ -11,7 +11,6 @@ angular
                 history.getHistory(function (response) {
                     angular.forEach(response, function (item) {
                         if (item.name) {
-                            console.log(item);
                             $scope.history.push(item);
                         }
                     });

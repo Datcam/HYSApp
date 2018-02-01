@@ -36,22 +36,19 @@ angular
         $scope.addGood = function (index, idInDB) {
 
             var promise = $q(function (resolve, reject) {
-                resolve();
-            });
-
-            promise
+                return Goods.removeGoodById(idInDB)
+                    .$promise
+                    .then(function (data) {
+                        if (data) {
+                            console.log('Ok: ', data);
+                            resolve();
+                        }
+                    }, function (err) {
+                        console.log(err);
+                        reject(err);
+                    });
+            })
                 .then(function () {
-                    return Goods.removeGoodById(idInDB)
-                        .$promise
-                        .then(function (data) {
-                            if (data) {
-                                console.log('Ok: ', data);
-                            }
-                        }, function (err) {
-                            console.log(err);
-                        });
-                })
-                .then(function (data) {
                     var good = $scope.availableGoods.splice(index, 1)[0];
                     return Goods.addGoodsToCart(good)
                         .$promise
@@ -59,6 +56,7 @@ angular
                         }, function (err) {
                             console.log('error on last step: ', err);
                         })
+
                 })
                 .then(function () {
                     ModalFactory.runModalWindows('Great, you have made an order!');

@@ -1,12 +1,13 @@
-# fff
-
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.16.0.
+# HYS app
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
+Follow next steps to start project:
 
-## Testing
-
-Running `grunt test` will run the unit tests with karma.
+1) cd HYSApp/
+2) npm install
+3) bower install
+4) npm install -g json-server
+5) npm install grunt (local)
+6) json-server mockServer/db.json
+7) grunt serve

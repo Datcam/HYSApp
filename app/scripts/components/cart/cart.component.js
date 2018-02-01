@@ -3,8 +3,6 @@ angular
 .component('cart', {
    templateUrl: 'scripts/components/cart/cart.component.html',
    controller: function ($scope, Goods, Cart, History) {
-       // $scope.goodsInCart = Goods.getGoodsFromCart();
-
        $scope.sum = 0;
        $scope.goodsInCart = [];
 

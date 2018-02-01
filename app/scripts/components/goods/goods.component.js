@@ -1,14 +1,10 @@
 angular
 .module('HYSApp')
 .component('goods', {
-   bindings: {
-       availableGoods: '='
-   },
     templateUrl: 'scripts/components/goods/goods.component.html',
-    controller: function ($scope, ModalFactory, Goods, $resource) {
+    controller: function ($scope, ModalFactory, Goods) {
 
         $scope.availableGoods = [];
-
         $scope.searchText = '';
 
         function activate() {

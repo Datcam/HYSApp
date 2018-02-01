@@ -3,7 +3,6 @@ angular
     .component('history', {
         templateUrl: 'scripts/components/history/history.component.html',
         controller: function ($scope, Goods, History) {
-
             $scope.history = [];
 
             function activate() {
@@ -12,6 +11,7 @@ angular
                 history.getHistory(function (response) {
                     angular.forEach(response, function (item) {
                         if (item.name) {
+                            console.log(item);
                             $scope.history.push(item);
                         }
                     });

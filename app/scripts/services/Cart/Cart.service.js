@@ -1,6 +1,6 @@
 angular
     .module('HYSApp')
-    .service('Cart', function ($resource) {
+    .service('Cart', function ($resource, History) {
 
         this.getCart = function () {
             return $resource('http://localhost:3000/cart', {}, {
@@ -17,7 +17,8 @@ angular
         };
 
         this.submitCart = function (cartGood) {
+            var currentGood = History.mapObject(cartGood);
             var history = $resource('http://localhost:3000/history');
-            history.save({}, cartGood);
+            history.save({}, currentGood);
         };
     });

@@ -7,13 +7,13 @@ angular
         var date = moment().format("YYYY-MM-DD");
 
         Object.defineProperty(object, 'date', {
-            value: date
-        })
-    };
+            value: date,
+            writable: true,
+            configurable: true,
+            enumerable  : true
+        });
 
-    this.saveOrder = function (order) {
-        this.mapObject(order);
-        this.history.push(order);
+        return object;
     };
 
     this.getHistory = function () {

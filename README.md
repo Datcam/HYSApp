@@ -4,10 +4,11 @@
 
 Follow next steps to start project:
 
+##Important - Current installation means that you already have latest versions of node js, npm, json-server and bower.
+
 1) cd HYSApp/
 2) npm install
 3) bower install
-4) npm install -g json-server
-5) npm install grunt (local)
-6) json-server mockServer/db.json
-7) grunt serve
+4) npm install grunt (local)
+5) json-server mockServer/db.json
+6) grunt serve

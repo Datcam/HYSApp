@@ -2,7 +2,7 @@ angular
 .module('HYSApp')
 .component('cart', {
    templateUrl: 'scripts/components/cart/cart.component.html',
-   controller: function ($scope, Goods, Cart, History) {
+   controller: function ($scope, $q,  Goods, Cart, History) {
        $scope.sum = 0;
        $scope.goodsInCart = [];
 
@@ -28,17 +28,63 @@ angular
        };
 
        $scope.submit = function (index, idInDB) {
-           var cartGood = $scope.goodsInCart.splice(index, 1)[0];
-           Cart.submitCart(cartGood);
-           Cart.removeCartById(idInDB);
-           $scope.updateSum();
+           var promise = $q(function (resolve, reject) {
+               resolve();
+           });
+
+           promise
+               .then(function () {
+                   var cartGood = $scope.goodsInCart.splice(index, 1)[0];
+
+                   return Cart.submitCart(cartGood)
+                       .$promise
+                       .then(function (data) {
+                           console.log('Ok: ', data);
+                       }, function (err) {
+                           console.log('Error: ', err);
+                       })
+               })
+               .then(function () {
+                   return Cart.removeCartById(idInDB)
+                       .$promise
+                       .then(function (data) {
+                           console.log('Ok: ', data);
+                       }, function (err) {
+                           console.log('Error: ', err);
+                       });
+               })
+               .then(function () {
+                   $scope.updateSum();
+               })
+               .catch(function (err) {
+                   console.log('Some error are appears: ', err);
+               });
        };
 
        $scope.remove = function (index, idInBD) {
-           $scope.goodsInCart.splice(index, 1);
-           Cart.removeCartById(idInBD);
-           $scope.updateSum();
 
+           var promise = $q(function (resolve, reject) {
+               resolve();
+           });
+
+           promise
+               .then(function () {
+                   return Cart.removeCartById(idInBD)
+                       .$promise
+                       .then(function (data) {
+                           console.log('Ok: ', data);
+                       }, function (err) {
+                           console.log('Error: ', err);
+                       })
+               })
+               .then(function () {
+                   console.log('next');
+                   $scope.goodsInCart.splice(index, 1);
+                   $scope.updateSum();
+               })
+               .catch(function (err) {
+                   console.log('Some error are appears: ', err);
+               });
        };
 
        activate();

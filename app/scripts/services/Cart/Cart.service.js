@@ -13,12 +13,13 @@ angular
                 {id: id},
                 {removeCartGood: {method: "DELETE"}}
             );
-            cart.removeCartGood({}, {id: id});
+            return cart.delete();
         };
 
         this.submitCart = function (cartGood) {
             var currentGood = History.mapObject(cartGood);
             var history = $resource('http://localhost:3000/history');
-            history.save({}, currentGood);
+
+            return history.save({}, currentGood);
         };
     });

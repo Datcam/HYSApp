@@ -9,14 +9,15 @@ angular
 
         this.addGoodsToCart = function (good) {
             var cart = $resource('http://localhost:3000/cart');
-            cart.save({}, good);
+            return cart.save({}, good);
         };
 
         this.removeGoodById = function (id) {
-            var cart = $resource('http://localhost:3000/goods/:id',
+            var goodById = $resource('http://localhost:3000/goods/:id',
                 {id: id},
                 {removeGood: {method: "DELETE"}}
             );
-            cart.removeGood({}, {id: id});
+
+            return goodById.delete();
         };
     });

@@ -3,9 +3,21 @@ angular
     .service('Cart', function ($resource, History) {
 
         this.getCart = function () {
-            return $resource('http://localhost:3000/cart', {}, {
-                getCart: {method: 'GET', isArray: true}
-            })
+            var carts =  $resource('http://localhost:3000/cart', {}, {
+                getCarts: {method: 'GET', isArray: true}
+            });
+
+            var cartsFromServer = [];
+
+            carts.getCarts(function (response) {
+                angular.forEach(response, function (item) {
+                    if (item.name) {
+                        cartsFromServer.push(item);
+                    }
+                });
+            });
+
+            return cartsFromServer;
         };
 
         this.removeCartById = function (id) {

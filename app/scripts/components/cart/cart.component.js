@@ -7,17 +7,7 @@ angular
        $scope.goodsInCart = [];
 
        function activate() {
-           var cart = Cart.getCart();
-
-           cart.getCart(function (response) {
-               angular.forEach(response, function (item) {
-                   if (item.name) {
-                       $scope.goodsInCart.push(item);
-                   }
-               });
-
-               $scope.updateSum();
-           });
+           $scope.goodsInCart = Cart.getCart();
        }
 
        $scope.updateSum = function () {

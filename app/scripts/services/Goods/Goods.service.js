@@ -1,10 +1,23 @@
 angular
     .module('HYSApp')
     .service('Goods', function ($resource) {
+
         this.getAllGoods = function () {
-            return $resource('http://localhost:3000/goods', {}, {
+            var goods = $resource('http://localhost:3000/goods', {}, {
                 getGoods: {method: 'GET', isArray: true}
-            })
+            });
+
+            var goodsFromServer = [];
+
+            goods.getGoods(function (response) {
+                angular.forEach(response, function (item) {
+                    if (item.name) {
+                        goodsFromServer.push(item);
+                    }
+                });
+            });
+
+            return goodsFromServer;
         };
 
         this.addGoodsToCart = function (good) {

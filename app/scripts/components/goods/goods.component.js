@@ -8,15 +8,7 @@ angular
         $scope.searchText = '';
 
         function activate() {
-            var goods = Goods.getAllGoods();
-
-            goods.getGoods(function (response) {
-                angular.forEach(response, function (item) {
-                    if (item.name) {
-                        $scope.availableGoods.push(item);
-                    }
-                });
-            });
+            $scope.availableGoods = Goods.getAllGoods();
         }
 
         function changeSortFlag() {

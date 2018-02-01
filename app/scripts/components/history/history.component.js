@@ -6,15 +6,7 @@ angular
             $scope.history = [];
 
             function activate() {
-                var history = History.getHistory();
-
-                history.getHistory(function (response) {
-                    angular.forEach(response, function (item) {
-                        if (item.name) {
-                            $scope.history.push(item);
-                        }
-                    });
-                });
+                $scope.history = History.getHistory();
             }
 
             activate();

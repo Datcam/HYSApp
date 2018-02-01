@@ -1,0 +1,21 @@
+<div class="sumOfGoods">Total price: {{sum}}</div>
+<!--<div class="sumOfGoods" ng-if="!sum">Not yet goods</div>-->
+<div class="row listStyle" ng-repeat="item in goodsInCart">
+    <div class="col-md-2 col-sm-2 col-xs-2 ">Id: {{item.id}}</div>
+    <div class="col-md-3 col-sm-3 col-xs-3 ">Name: {{item.name}}</div>
+    <div class="col-md-5 col-sm-5 col-xs-5 ">Detail: {{item.detail}}</div>
+    <div class="col-md-2 col-sm-2 col-xs-2 ">Price: {{item.price | currency}}</div>
+    <button
+            type="button"
+            style="line-height: 0"
+            ng-click="submit($index, item.id)"
+            class="btn btn-primary btn-sm"
+            class="col-md-2 col-sm-2 col-xs-2">Submit</button>
+
+    <button
+            type="button"
+            style="line-height: 0"
+            ng-click="remove($index, item.id)"
+            class="btn btn-primary btn-danger"
+            class="col-md-2 col-sm-2 col-xs-2">Remove</button>
+</div>

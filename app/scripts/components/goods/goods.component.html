@@ -1,0 +1,17 @@
+
+<label class="searchBox">Search: <input ng-model="searchText"></label>
+<div class="sort">
+    <span ng-click="sort()" type="button">sort</span>
+</div>
+<div class="row listStyle" ng-repeat="item in availableGoods | filter:searchText">
+    <div class="col-md-2 col-sm-2 col-xs-2 ">Id: {{item.id}}</div>
+    <div class="col-md-3 col-sm-3 col-xs-3 ">Name: {{item.name}}</div>
+    <div class="col-md-5 col-sm-5 col-xs-5 ">Detail: {{item.detail}}</div>
+    <div class="col-md-2 col-sm-2 col-xs-2 ">Price: {{item.price | currency}}</div>
+    <button
+            type="button"
+            style="line-height: 0"
+            ng-click="addGood($index, item.id)"
+            class="btn btn-primary btn-sm"
+            class="col-md-2 col-sm-2 col-xs-2">Add to cart</button>
+</div>

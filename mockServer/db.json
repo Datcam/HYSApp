@@ -1,0 +1,66 @@
+{
+  "goods": [
+    {
+      "id": 1,
+      "name": "Meizu",
+      "detail": [
+        "1GBRAM",
+        "16GB",
+        "140g"
+      ],
+      "price": 500
+    },
+    {
+      "id": 2,
+      "name": "Samsung",
+      "detail": [
+        "1GBRAM",
+        "16GB",
+        "140g"
+      ],
+      "price": 350
+    },
+    {
+      "id": 3,
+      "name": "iPhone 6s",
+      "detail": [
+        "1GBRAM",
+        "16GB",
+        "140g"
+      ],
+      "price": 400
+    },
+    {
+      "id": 4,
+      "name": "iPad",
+      "detail": [
+        "1GBRAM",
+        "16GB",
+        "140g"
+      ],
+      "price": 120
+    },
+    {
+      "id": 5,
+      "name": "Lenovo",
+      "detail": [
+        "1GBRAM",
+        "16GB",
+        "140g"
+      ],
+      "price": 80
+    },
+    {
+      "id": 6,
+      "name": "Nexux",
+      "detail": [
+        "1GBRAM",
+        "16GB",
+        "140g"
+      ],
+      "price": 30
+    }
+  ],
+  "cart": [],
+  "history": []
+}
